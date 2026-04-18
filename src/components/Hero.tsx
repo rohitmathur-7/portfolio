@@ -7,15 +7,19 @@ import { siteConfig } from "@/data/portfolio";
 function useMousePosition() {
 	const [pos, setPos] = useState({ x: 0, y: 0 });
 	useEffect(() => {
-		const handler = (e: MouseEvent) =>
-			setPos({ x: e.clientX, y: e.clientY });
+		const handler = (e: MouseEvent) => setPos({ x: e.clientX, y: e.clientY });
 		window.addEventListener("mousemove", handler);
 		return () => window.removeEventListener("mousemove", handler);
 	}, []);
 	return pos;
 }
 
-const roles = ["Frontend Developer", "React Specialist", "WordPress Expert", "UI Engineer"];
+const roles = [
+	"Frontend Developer",
+	"React Specialist",
+	"WordPress Expert",
+	"UI Engineer",
+];
 
 function TypingRole() {
 	const [roleIndex, setRoleIndex] = useState(0);
@@ -39,7 +43,7 @@ function TypingRole() {
 					}
 				}
 			},
-			isDeleting ? 40 : 80
+			isDeleting ? 40 : 80,
 		);
 		return () => clearTimeout(timeout);
 	}, [text, isDeleting, roleIndex]);
@@ -181,7 +185,9 @@ export default function Hero() {
 									}}
 								>
 									Hi, I&apos;m{" "}
-									<span className="text-gradient">{siteConfig.name.split(" ")[0]}</span>
+									<span className="text-gradient">
+										{siteConfig.name.split(" ")[0]}
+									</span>
 								</motion.span>
 							</span>
 							<span className="block overflow-hidden mt-4">
@@ -214,8 +220,8 @@ export default function Hero() {
 						variants={childVariants}
 						className="text-base md:text-lg text-muted-light max-w-xl mx-auto mb-12 leading-relaxed"
 					>
-						{siteConfig.tagline}. Specializing in React, Next.js &amp;
-						WordPress with a passion for pixel-perfect interfaces.
+						{siteConfig.tagline}. Specializing in React, Next.js &amp; WordPress
+						with a passion for pixel-perfect interfaces.
 					</motion.p>
 
 					{/* CTAs */}

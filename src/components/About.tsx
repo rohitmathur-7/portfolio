@@ -98,16 +98,14 @@ export default function About() {
 								transition={{ delay: 0.6, duration: 0.5 }}
 								className="mt-8 flex flex-wrap gap-3"
 							>
-								{["React", "Next.js", "WordPress", "TypeScript"].map(
-									(tag) => (
-										<span
-											key={tag}
-											className="px-3 py-1.5 text-xs font-mono text-primary/80 bg-primary/5 border border-primary/10 rounded-lg"
-										>
-											{tag}
-										</span>
-									)
-								)}
+								{["React", "Next.js", "WordPress", "TypeScript"].map((tag) => (
+									<span
+										key={tag}
+										className="px-3 py-1.5 text-xs font-mono text-primary/80 bg-primary/5 border border-primary/10 rounded-lg"
+									>
+										{tag}
+									</span>
+								))}
 							</motion.div>
 
 							<div className="absolute bottom-6 right-6 text-xs font-mono text-muted/30">

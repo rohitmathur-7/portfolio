@@ -120,9 +120,7 @@ function ProjectCard({
 									className="flex items-center gap-2 px-4 py-2 bg-primary text-white text-sm font-medium rounded-lg hover:bg-primary-light transition-colors"
 									initial={{ y: 20, opacity: 0 }}
 									animate={
-										isHovered
-											? { y: 0, opacity: 1 }
-											: { y: 20, opacity: 0 }
+										isHovered ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }
 									}
 									transition={{ delay: 0.1 }}
 								>
@@ -150,9 +148,7 @@ function ProjectCard({
 									className="flex items-center gap-2 px-4 py-2 bg-surface-elevated text-foreground text-sm font-medium rounded-lg border border-border-light hover:border-primary/50 transition-colors"
 									initial={{ y: 20, opacity: 0 }}
 									animate={
-										isHovered
-											? { y: 0, opacity: 1 }
-											: { y: 20, opacity: 0 }
+										isHovered ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }
 									}
 									transition={{ delay: 0.15 }}
 								>
@@ -249,10 +245,7 @@ export default function Projects() {
 			</div>
 
 			<div className="mx-auto max-w-6xl relative">
-				<SectionHeading
-					title="Featured Projects"
-					subtitle="What I've built"
-				/>
+				<SectionHeading title="Featured Projects" subtitle="What I've built" />
 
 				<div className="grid md:grid-cols-2 gap-8">
 					{projectsData.map((project, i) => (

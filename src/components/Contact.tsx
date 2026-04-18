@@ -102,10 +102,10 @@ export default function Contact() {
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
 		const subject = encodeURIComponent(
-			`Portfolio Contact from ${formState.name}`
+			`Portfolio Contact from ${formState.name}`,
 		);
 		const body = encodeURIComponent(
-			`Name: ${formState.name}\nEmail: ${formState.email}\n\n${formState.message}`
+			`Name: ${formState.name}\nEmail: ${formState.email}\n\n${formState.message}`,
 		);
 		window.location.href = `mailto:${siteConfig.email}?subject=${subject}&body=${body}`;
 		setIsSubmitted(true);
@@ -120,10 +120,7 @@ export default function Contact() {
 			</div>
 
 			<div className="mx-auto max-w-6xl relative">
-				<SectionHeading
-					title="Get In Touch"
-					subtitle="Let's connect"
-				/>
+				<SectionHeading title="Get In Touch" subtitle="Let's connect" />
 
 				<div className="grid lg:grid-cols-5 gap-12 max-w-5xl mx-auto">
 					{/* Contact info - 2 cols */}
@@ -142,9 +139,9 @@ export default function Contact() {
 								<span className="text-gradient">amazing</span>
 							</h3>
 							<p className="text-muted-light text-sm leading-relaxed">
-								I&apos;m always excited to work on new projects and
-								collaborate with great people. Whether you have a question or
-								just want to say hi, my inbox is open.
+								I&apos;m always excited to work on new projects and collaborate
+								with great people. Whether you have a question or just want to
+								say hi, my inbox is open.
 							</p>
 						</div>
 
@@ -265,18 +262,14 @@ export default function Contact() {
 										id="name"
 										label="Your Name"
 										value={formState.name}
-										onChange={(v) =>
-											setFormState({ ...formState, name: v })
-										}
+										onChange={(v) => setFormState({ ...formState, name: v })}
 									/>
 									<FloatingInput
 										id="email"
 										label="Your Email"
 										type="email"
 										value={formState.email}
-										onChange={(v) =>
-											setFormState({ ...formState, email: v })
-										}
+										onChange={(v) => setFormState({ ...formState, email: v })}
 									/>
 								</div>
 
@@ -320,11 +313,7 @@ export default function Contact() {
 								>
 									<motion.div
 										className="absolute inset-0 bg-gradient-to-r from-primary-light via-secondary to-primary-light"
-										animate={
-											isSubmitted
-												? { x: 0 }
-												: { x: ["-100%", "100%"] }
-										}
+										animate={isSubmitted ? { x: 0 } : { x: ["-100%", "100%"] }}
 										transition={
 											isSubmitted
 												? {}

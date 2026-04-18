@@ -179,10 +179,7 @@ export default function Experience() {
 			</div>
 
 			<div className="mx-auto max-w-4xl relative">
-				<SectionHeading
-					title="Experience"
-					subtitle="My journey"
-				/>
+				<SectionHeading title="Experience" subtitle="My journey" />
 
 				<div className="relative mt-8">
 					{experienceData.map((item, i) => (

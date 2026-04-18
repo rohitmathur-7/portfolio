@@ -88,7 +88,8 @@ function SkillCategory({
 	delay: number;
 }) {
 	const icon = categoryIcons[category.title] || "💡";
-	const gradient = categoryGradients[category.title] || "from-primary to-secondary";
+	const gradient =
+		categoryGradients[category.title] || "from-primary to-secondary";
 
 	return (
 		<motion.div
@@ -151,10 +152,7 @@ export default function Skills() {
 			</div>
 
 			<div className="mx-auto max-w-6xl relative">
-				<SectionHeading
-					title="Skills & Tech"
-					subtitle="My toolkit"
-				/>
+				<SectionHeading title="Skills & Tech" subtitle="My toolkit" />
 
 				<div className="grid md:grid-cols-3 gap-6">
 					{categories.map((cat, i) => (

@@ -20,13 +20,13 @@ A modern, high-performance developer portfolio built with **Next.js**, **Tailwin
 
 ## Tech Stack
 
-| Category | Technology |
-|----------|-----------|
-| Framework | Next.js 16 (App Router) |
-| Styling | Tailwind CSS v4 |
-| Animations | Framer Motion |
-| Language | TypeScript |
-| Build | Turbopack |
+| Category   | Technology              |
+| ---------- | ----------------------- |
+| Framework  | Next.js 16 (App Router) |
+| Styling    | Tailwind CSS v4         |
+| Animations | Framer Motion           |
+| Language   | TypeScript              |
+| Build      | Turbopack               |
 
 ## Getting Started
 

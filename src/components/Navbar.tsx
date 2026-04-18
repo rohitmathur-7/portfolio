@@ -1,7 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
+import {
+	motion,
+	AnimatePresence,
+	useScroll,
+	useMotionValueEvent,
+} from "framer-motion";
 import { siteConfig } from "@/data/portfolio";
 
 export default function Navbar() {
@@ -26,7 +31,7 @@ export default function Navbar() {
 					}
 				});
 			},
-			{ rootMargin: "-40% 0px -60% 0px" }
+			{ rootMargin: "-40% 0px -60% 0px" },
 		);
 		const sections = document.querySelectorAll("section[id]");
 		sections.forEach((s) => observer.observe(s));
