@@ -132,23 +132,11 @@ export const skillsData = {
 	},
 	backend: {
 		title: "Backend & CMS",
-		skills: [
-			"WordPress",
-			"Gutenberg",
-			"PHP",
-			"REST APIs",
-			"Node.js",
-		],
+		skills: ["WordPress", "Gutenberg", "PHP", "REST APIs", "Node.js"],
 	},
 	tools: {
 		title: "Tools & Platforms",
-		skills: [
-			"Git & GitHub",
-			"Figma",
-			"VS Code",
-			"Linux/CLI",
-			"Vercel",
-		],
+		skills: ["Git & GitHub", "Figma", "VS Code", "Linux/CLI", "Vercel"],
 	},
 };
 
