@@ -1,7 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { skillsData } from "@/data/portfolio";
 import SectionHeading from "./SectionHeading";
 
@@ -22,12 +21,10 @@ function SkillPill({
 	delay,
 	gradient,
 }: {
-	skill: { name: string; level: number };
+	skill: string;
 	delay: number;
 	gradient: string;
 }) {
-	const [isHovered, setIsHovered] = useState(false);
-
 	return (
 		<motion.div
 			initial={{ opacity: 0, scale: 0.8, y: 20 }}
@@ -39,42 +36,19 @@ function SkillPill({
 				stiffness: 200,
 				damping: 20,
 			}}
-			onMouseEnter={() => setIsHovered(true)}
-			onMouseLeave={() => setIsHovered(false)}
 			className="relative group"
 		>
 			<motion.div
-				className="relative px-4 py-3 rounded-xl bg-surface border border-border overflow-hidden cursor-default card-hover-border"
-				whileHover={{ y: -3, scale: 1.02 }}
+				className={`relative px-4 py-3 rounded-xl bg-surface border border-border overflow-hidden cursor-default card-hover-border`}
+				whileHover={{ y: -3, scale: 1.02, borderColor: "rgba(99,102,241,0.3)" }}
 				transition={{ type: "spring", stiffness: 400, damping: 20 }}
 			>
-				{/* Animated fill background */}
 				<motion.div
-					className={`absolute inset-0 bg-gradient-to-r ${gradient} opacity-[0.06]`}
-					initial={{ scaleX: 0 }}
-					whileInView={{ scaleX: skill.level / 100 }}
-					viewport={{ once: true }}
-					transition={{ duration: 1.2, delay: delay + 0.3, ease: "easeOut" }}
-					style={{ transformOrigin: "left" }}
+					className={`absolute inset-0 bg-gradient-to-r ${gradient} opacity-0 group-hover:opacity-[0.08] transition-opacity duration-300`}
 				/>
-
-				<div className="relative flex items-center justify-between gap-3">
-					<span className="text-sm font-medium text-foreground whitespace-nowrap">
-						{skill.name}
-					</span>
-					<AnimatePresence>
-						{isHovered && (
-							<motion.span
-								initial={{ opacity: 0, scale: 0.5, x: 10 }}
-								animate={{ opacity: 1, scale: 1, x: 0 }}
-								exit={{ opacity: 0, scale: 0.5, x: 10 }}
-								className={`text-xs font-mono font-bold bg-gradient-to-r ${gradient} bg-clip-text text-transparent`}
-							>
-								{skill.level}%
-							</motion.span>
-						)}
-					</AnimatePresence>
-				</div>
+				<span className="relative text-sm font-medium text-foreground whitespace-nowrap">
+					{skill}
+				</span>
 			</motion.div>
 		</motion.div>
 	);
@@ -84,7 +58,7 @@ function SkillCategory({
 	category,
 	delay,
 }: {
-	category: { title: string; skills: { name: string; level: number }[] };
+	category: { title: string; skills: string[] };
 	delay: number;
 }) {
 	const icon = categoryIcons[category.title] || "💡";
@@ -122,10 +96,10 @@ function SkillCategory({
 				</div>
 
 				{/* Skills grid */}
-				<div className="grid grid-cols-2 gap-2">
+				<div className="flex flex-wrap gap-2">
 					{category.skills.map((skill, i) => (
 						<SkillPill
-							key={skill.name}
+							key={skill}
 							skill={skill}
 							delay={delay + i * 0.06}
 							gradient={gradient}

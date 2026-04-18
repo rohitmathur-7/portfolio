@@ -24,29 +24,35 @@ const roles = [
 function TypingRole() {
 	const [roleIndex, setRoleIndex] = useState(0);
 	const [text, setText] = useState("");
-	const [isDeleting, setIsDeleting] = useState(false);
+	const [phase, setPhase] = useState<"typing" | "pausing" | "deleting">("typing");
 
 	useEffect(() => {
 		const current = roles[roleIndex];
-		const timeout = setTimeout(
-			() => {
-				if (!isDeleting) {
+
+		if (phase === "typing") {
+			if (text.length < current.length) {
+				const timeout = setTimeout(() => {
 					setText(current.slice(0, text.length + 1));
-					if (text.length === current.length) {
-						setTimeout(() => setIsDeleting(true), 2000);
-					}
-				} else {
+				}, 80);
+				return () => clearTimeout(timeout);
+			} else {
+				const timeout = setTimeout(() => setPhase("deleting"), 2000);
+				return () => clearTimeout(timeout);
+			}
+		}
+
+		if (phase === "deleting") {
+			if (text.length > 0) {
+				const timeout = setTimeout(() => {
 					setText(current.slice(0, text.length - 1));
-					if (text.length === 0) {
-						setIsDeleting(false);
-						setRoleIndex((prev) => (prev + 1) % roles.length);
-					}
-				}
-			},
-			isDeleting ? 40 : 80,
-		);
-		return () => clearTimeout(timeout);
-	}, [text, isDeleting, roleIndex]);
+				}, 40);
+				return () => clearTimeout(timeout);
+			} else {
+				setRoleIndex((prev) => (prev + 1) % roles.length);
+				setPhase("typing");
+			}
+		}
+	}, [text, phase, roleIndex]);
 
 	return (
 		<span className="text-gradient">
