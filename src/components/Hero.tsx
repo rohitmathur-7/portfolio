@@ -24,7 +24,9 @@ const roles = [
 function TypingRole() {
 	const [roleIndex, setRoleIndex] = useState(0);
 	const [text, setText] = useState("");
-	const [phase, setPhase] = useState<"typing" | "pausing" | "deleting">("typing");
+	const [phase, setPhase] = useState<"typing" | "pausing" | "deleting">(
+		"typing",
+	);
 
 	useEffect(() => {
 		const current = roles[roleIndex];
