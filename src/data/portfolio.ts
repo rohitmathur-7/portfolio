@@ -9,8 +9,9 @@ export const siteConfig = {
 	location: "Jaipur, India",
 	social: {
 		github: "https://github.com/rohitmathur-7",
-		linkedin: "https://linkedin.com/in/rohitmathur7",
-		leetcode: "https://leetcode.com/rohitmathur7",
+		linkedin: "https://www.linkedin.com/in/rohit-mathur-3619651b0/",
+		instagram: "https://www.instagram.com/_rohit__7/",
+		leetcode: "https://leetcode.com/Rohit_Mathur/",
 		codechef: "https://www.codechef.com/users/rohitmathur7",
 	},
 	nav: [
@@ -86,7 +87,7 @@ export const projectsData = [
 		title: "Developer Portfolio",
 		subtitle: "Modern Portfolio with Next.js",
 		description:
-			"A high-performance, SEO-optimized portfolio website built with Next.js 14 and Tailwind CSS. Features smooth animations, responsive design, and a clean minimal aesthetic.",
+			"A high-performance, SEO-optimized portfolio website built with Next.js 16 and Tailwind CSS. Features smooth animations, responsive design, and a clean minimal aesthetic.",
 		problem:
 			"Needed a fast, modern portfolio to showcase projects and attract freelance clients and job opportunities.",
 		solution:
@@ -118,35 +119,35 @@ export const skillsData = {
 	frontend: {
 		title: "Frontend",
 		skills: [
-			{ name: "React.js", level: 95 },
-			{ name: "Next.js", level: 85 },
-			{ name: "TypeScript", level: 80 },
-			{ name: "JavaScript", level: 95 },
-			{ name: "HTML5", level: 95 },
-			{ name: "CSS3", level: 90 },
-			{ name: "Tailwind CSS", level: 90 },
-			{ name: "Redux Toolkit", level: 85 },
-			{ name: "Framer Motion", level: 75 },
+			"React.js",
+			"Next.js",
+			"TypeScript",
+			"JavaScript",
+			"HTML5",
+			"CSS3",
+			"Tailwind CSS",
+			"Redux Toolkit",
+			"Framer Motion",
 		],
 	},
 	backend: {
 		title: "Backend & CMS",
 		skills: [
-			{ name: "WordPress", level: 90 },
-			{ name: "Gutenberg", level: 90 },
-			{ name: "PHP", level: 80 },
-			{ name: "REST APIs", level: 85 },
-			{ name: "Node.js", level: 70 },
+			"WordPress",
+			"Gutenberg",
+			"PHP",
+			"REST APIs",
+			"Node.js",
 		],
 	},
 	tools: {
 		title: "Tools & Platforms",
 		skills: [
-			{ name: "Git & GitHub", level: 90 },
-			{ name: "Figma", level: 75 },
-			{ name: "VS Code", level: 95 },
-			{ name: "Linux/CLI", level: 80 },
-			{ name: "Vercel", level: 80 },
+			"Git & GitHub",
+			"Figma",
+			"VS Code",
+			"Linux/CLI",
+			"Vercel",
 		],
 	},
 };
