@@ -1,16 +1,28 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { experienceData } from "@/data/portfolio";
 import SectionHeading from "./SectionHeading";
 
+function useIsMobile() {
+	const [isMobile, setIsMobile] = useState(false);
+	useEffect(() => {
+		setIsMobile(
+			"ontouchstart" in window || navigator.maxTouchPoints > 0,
+		);
+	}, []);
+	return isMobile;
+}
+
 function TimelineCard({
 	item,
 	index,
+	isMobile,
 }: {
 	item: (typeof experienceData)[0];
 	index: number;
+	isMobile: boolean;
 }) {
 	const cardRef = useRef<HTMLDivElement>(null);
 	const { scrollYProgress } = useScroll({
@@ -47,16 +59,20 @@ function TimelineCard({
 					className="relative z-10"
 				>
 					<div className="w-4 h-4 rounded-full bg-primary border-4 border-background" />
-					<div className="absolute inset-0 w-4 h-4 rounded-full bg-primary/30 animate-ping" />
+					{!isMobile && (
+						<div className="absolute inset-0 w-4 h-4 rounded-full bg-primary/30 animate-ping" />
+					)}
 				</motion.div>
 
 				{/* Animated line */}
 				{index < experienceData.length - 1 && (
 					<div className="relative w-px flex-1 bg-border/50 mt-2">
-						<motion.div
-							className="absolute top-0 left-0 w-full bg-gradient-to-b from-primary to-primary/0"
-							style={{ height: lineHeight }}
-						/>
+						{!isMobile && (
+							<motion.div
+								className="absolute top-0 left-0 w-full bg-gradient-to-b from-primary to-primary/0"
+								style={{ height: lineHeight }}
+							/>
+						)}
 					</div>
 				)}
 			</div>
@@ -171,6 +187,8 @@ function TimelineCard({
 }
 
 export default function Experience() {
+	const isMobile = useIsMobile();
+
 	return (
 		<section id="experience" className="py-32 px-6 relative">
 			{/* Background */}
@@ -183,7 +201,7 @@ export default function Experience() {
 
 				<div className="relative mt-8">
 					{experienceData.map((item, i) => (
-						<TimelineCard key={item.company} item={item} index={i} />
+						<TimelineCard key={item.company} item={item} index={i} isMobile={isMobile} />
 					))}
 				</div>
 			</div>

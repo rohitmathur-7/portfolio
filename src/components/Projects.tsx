@@ -1,9 +1,19 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { projectsData } from "@/data/portfolio";
 import SectionHeading from "./SectionHeading";
+
+function useIsMobile() {
+	const [isMobile, setIsMobile] = useState(false);
+	useEffect(() => {
+		setIsMobile(
+			"ontouchstart" in window || navigator.maxTouchPoints > 0,
+		);
+	}, []);
+	return isMobile;
+}
 
 function ProjectCard({
 	project,
@@ -14,6 +24,7 @@ function ProjectCard({
 }) {
 	const ref = useRef<HTMLDivElement>(null);
 	const [isHovered, setIsHovered] = useState(false);
+	const isMobile = useIsMobile();
 	const x = useMotionValue(0);
 	const y = useMotionValue(0);
 
@@ -27,7 +38,7 @@ function ProjectCard({
 	});
 
 	function handleMouse(e: React.MouseEvent) {
-		if (!ref.current) return;
+		if (isMobile || !ref.current) return;
 		const rect = ref.current.getBoundingClientRect();
 		x.set((e.clientX - rect.left) / rect.width - 0.5);
 		y.set((e.clientY - rect.top) / rect.height - 0.5);
@@ -62,13 +73,13 @@ function ProjectCard({
 				ease: [0.25, 0.4, 0.25, 1],
 			}}
 			style={{
-				rotateX: isHovered ? rotateX : 0,
-				rotateY: isHovered ? rotateY : 0,
-				transformPerspective: 1200,
+				rotateX: !isMobile && isHovered ? rotateX : 0,
+				rotateY: !isMobile && isHovered ? rotateY : 0,
+				transformPerspective: isMobile ? undefined : 1200,
 			}}
-			onMouseMove={handleMouse}
-			onMouseEnter={() => setIsHovered(true)}
-			onMouseLeave={handleMouseLeave}
+			onMouseMove={isMobile ? undefined : handleMouse}
+			onMouseEnter={isMobile ? undefined : () => setIsHovered(true)}
+			onMouseLeave={isMobile ? undefined : handleMouseLeave}
 			className="group relative"
 		>
 			<div className="relative rounded-2xl bg-surface border border-border overflow-hidden card-hover-border transition-all duration-500">

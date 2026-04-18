@@ -6,12 +6,17 @@ import { siteConfig } from "@/data/portfolio";
 
 function useMousePosition() {
 	const [pos, setPos] = useState({ x: 0, y: 0 });
+	const [isTouchDevice, setIsTouchDevice] = useState(false);
 	useEffect(() => {
+		const isTouch =
+			"ontouchstart" in window || navigator.maxTouchPoints > 0;
+		setIsTouchDevice(isTouch);
+		if (isTouch) return;
 		const handler = (e: MouseEvent) => setPos({ x: e.clientX, y: e.clientY });
 		window.addEventListener("mousemove", handler);
 		return () => window.removeEventListener("mousemove", handler);
 	}, []);
-	return pos;
+	return { ...pos, isTouchDevice };
 }
 
 const roles = [
@@ -91,84 +96,89 @@ export default function Hero() {
 	});
 	const y = useTransform(scrollYProgress, [0, 1], [0, 200]);
 	const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+	const isMobile = mouse.isTouchDevice;
 
 	return (
 		<section
 			ref={sectionRef}
 			className="relative min-h-screen flex items-center justify-center overflow-hidden"
 		>
-			{/* Ambient gradient orbs */}
-			<div className="absolute inset-0 overflow-hidden">
-				<motion.div
-					className="absolute w-[600px] h-[600px] rounded-full blur-[120px]"
-					style={{
-						background:
-							"radial-gradient(circle, rgba(99,102,241,0.15) 0%, transparent 70%)",
-						left: `calc(30% + ${mouse.x * 0.02}px)`,
-						top: `calc(20% + ${mouse.y * 0.02}px)`,
-					}}
-					animate={{ scale: [1, 1.1, 1], rotate: [0, 5, 0] }}
-					transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-				/>
-				<motion.div
-					className="absolute w-[500px] h-[500px] rounded-full blur-[100px]"
-					style={{
-						background:
-							"radial-gradient(circle, rgba(34,211,238,0.1) 0%, transparent 70%)",
-						right: `calc(20% + ${mouse.x * -0.015}px)`,
-						bottom: `calc(25% + ${mouse.y * -0.015}px)`,
-					}}
-					animate={{ scale: [1.1, 1, 1.1], rotate: [0, -5, 0] }}
-					transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-				/>
-				<motion.div
-					className="absolute w-[400px] h-[400px] rounded-full blur-[80px]"
-					style={{
-						background:
-							"radial-gradient(circle, rgba(244,114,182,0.08) 0%, transparent 70%)",
-						left: "55%",
-						top: "60%",
-					}}
-					animate={{ scale: [1, 1.2, 1] }}
-					transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-				/>
-			</div>
+			{/* Ambient gradient orbs — hidden on mobile */}
+			{!isMobile && (
+				<div className="absolute inset-0 overflow-hidden">
+					<motion.div
+						className="absolute w-[600px] h-[600px] rounded-full blur-[120px]"
+						style={{
+							background:
+								"radial-gradient(circle, rgba(99,102,241,0.15) 0%, transparent 70%)",
+							left: `calc(30% + ${mouse.x * 0.02}px)`,
+							top: `calc(20% + ${mouse.y * 0.02}px)`,
+						}}
+						animate={{ scale: [1, 1.1, 1], rotate: [0, 5, 0] }}
+						transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+					/>
+					<motion.div
+						className="absolute w-[500px] h-[500px] rounded-full blur-[100px]"
+						style={{
+							background:
+								"radial-gradient(circle, rgba(34,211,238,0.1) 0%, transparent 70%)",
+							right: `calc(20% + ${mouse.x * -0.015}px)`,
+							bottom: `calc(25% + ${mouse.y * -0.015}px)`,
+						}}
+						animate={{ scale: [1.1, 1, 1.1], rotate: [0, -5, 0] }}
+						transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+					/>
+					<motion.div
+						className="absolute w-[400px] h-[400px] rounded-full blur-[80px]"
+						style={{
+							background:
+								"radial-gradient(circle, rgba(244,114,182,0.08) 0%, transparent 70%)",
+							left: "55%",
+							top: "60%",
+						}}
+						animate={{ scale: [1, 1.2, 1] }}
+						transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+					/>
+				</div>
+			)}
 
 			{/* Dot grid pattern */}
 			<div className="absolute inset-0 dot-pattern" />
 
-			{/* Floating geometric shapes */}
-			<div className="absolute inset-0 overflow-hidden pointer-events-none">
-				{[...Array(5)].map((_, i) => (
-					<motion.div
-						key={i}
-						className="absolute opacity-[0.07]"
-						style={{
-							left: `${15 + i * 18}%`,
-							top: `${20 + (i % 3) * 25}%`,
-						}}
-						animate={{
-							y: [0, -30, 0],
-							rotate: [0, 180, 360],
-							opacity: [0.04, 0.08, 0.04],
-						}}
-						transition={{
-							duration: 8 + i * 2,
-							repeat: Infinity,
-							ease: "easeInOut",
-							delay: i * 0.5,
-						}}
-					>
-						{i % 3 === 0 ? (
-							<div className="w-16 h-16 border border-primary/30 rounded-lg" />
-						) : i % 3 === 1 ? (
-							<div className="w-12 h-12 border border-accent/30 rounded-full" />
-						) : (
-							<div className="w-0 h-0 border-l-[8px] border-r-[8px] border-b-[14px] border-l-transparent border-r-transparent border-b-secondary/30" />
-						)}
-					</motion.div>
-				))}
-			</div>
+			{/* Floating geometric shapes — hidden on mobile */}
+			{!isMobile && (
+				<div className="absolute inset-0 overflow-hidden pointer-events-none">
+					{[...Array(5)].map((_, i) => (
+						<motion.div
+							key={i}
+							className="absolute opacity-[0.07]"
+							style={{
+								left: `${15 + i * 18}%`,
+								top: `${20 + (i % 3) * 25}%`,
+							}}
+							animate={{
+								y: [0, -30, 0],
+								rotate: [0, 180, 360],
+								opacity: [0.04, 0.08, 0.04],
+							}}
+							transition={{
+								duration: 8 + i * 2,
+								repeat: Infinity,
+								ease: "easeInOut",
+								delay: i * 0.5,
+							}}
+						>
+							{i % 3 === 0 ? (
+								<div className="w-16 h-16 border border-primary/30 rounded-lg" />
+							) : i % 3 === 1 ? (
+								<div className="w-12 h-12 border border-accent/30 rounded-full" />
+							) : (
+								<div className="w-0 h-0 border-l-[8px] border-r-[8px] border-b-[14px] border-l-transparent border-r-transparent border-b-secondary/30" />
+							)}
+						</motion.div>
+					))}
+				</div>
+			)}
 
 			{/* Main content */}
 			<motion.div style={{ y, opacity }} className="relative z-10 w-full">
@@ -302,14 +312,9 @@ export default function Hero() {
 					>
 						<div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-background to-transparent z-10" />
 						<div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-background to-transparent z-10" />
-						<motion.div
+						<div
 							className="flex gap-8 items-center whitespace-nowrap"
-							animate={{ x: ["0%", "-50%"] }}
-							transition={{
-								duration: 25,
-								repeat: Infinity,
-								ease: "linear",
-							}}
+							style={{ animation: "marquee 25s linear infinite" }}
 						>
 							{[
 								"React.js",
@@ -341,7 +346,7 @@ export default function Hero() {
 									{tech}
 								</span>
 							))}
-						</motion.div>
+						</div>
 					</motion.div>
 				</motion.div>
 			</motion.div>
