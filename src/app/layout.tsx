@@ -11,6 +11,10 @@ export const metadata: Metadata = {
 	title: "Rohit Mathur | Frontend Developer",
 	description:
 		"Frontend Developer specializing in React.js, Next.js, and WordPress Gutenberg. Building modern, scalable web applications with clean code and great user experiences.",
+	icons: {
+		icon: "/icon.svg",
+		apple: "/icon.svg",
+	},
 	keywords: [
 		"Rohit Mathur",
 		"Frontend Developer",

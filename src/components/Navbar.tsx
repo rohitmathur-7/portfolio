@@ -117,24 +117,6 @@ export default function Navbar() {
 								)}
 							</motion.a>
 						))}
-						<motion.a
-							href="/resume.pdf"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="ml-3 text-sm px-5 py-2 border border-primary/50 text-primary rounded-lg font-medium relative overflow-hidden group"
-							whileHover={{ scale: 1.03 }}
-							whileTap={{ scale: 0.97 }}
-						>
-							<span className="relative z-10 group-hover:text-white transition-colors duration-300">
-								Resume
-							</span>
-							<motion.div
-								className="absolute inset-0 bg-primary"
-								initial={{ y: "100%" }}
-								whileHover={{ y: 0 }}
-								transition={{ duration: 0.3 }}
-							/>
-						</motion.a>
 					</div>
 
 					{/* Mobile toggle */}
@@ -208,21 +190,6 @@ export default function Navbar() {
 									{item.label}
 								</motion.a>
 							))}
-							<motion.a
-								href="/resume.pdf"
-								target="_blank"
-								rel="noopener noreferrer"
-								initial={{ opacity: 0, x: -30 }}
-								animate={{ opacity: 1, x: 0 }}
-								exit={{ opacity: 0, x: 30 }}
-								transition={{
-									delay: siteConfig.nav.length * 0.08,
-									duration: 0.4,
-								}}
-								className="text-lg px-8 py-3 border border-primary text-primary rounded-xl hover:bg-primary hover:text-white transition-all mt-4"
-							>
-								Resume
-							</motion.a>
 						</motion.div>
 					)}
 				</AnimatePresence>
